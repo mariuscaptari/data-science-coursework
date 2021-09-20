@@ -8,7 +8,8 @@ function [pc, eigenValues] = mypca(A)
     %Step one:
     % Obtain eigenvalues from A^T A.
 
-    [eigenVectorsTmp, eigenValues] = eig((1/(numObs - 1)) * A.' * A);
+    A = A ./ sqrt(numObs - 1);
+    [eigenVectorsTmp, eigenValues] = eig(A.' * A);
 
     eigenValues = diag(eigenValues);
     
@@ -18,7 +19,7 @@ function [pc, eigenValues] = mypca(A)
     % eigenvector of A^T A and u_i is an eigenvector of AA^T
     pc = A * eigenVectorsTmp;
 
-    % Step five: Sort eigenvalues and principal components in order of most
+    % Step three: Sort eigenvalues and principal components in order of most
     % influence, and normalize.
     [mx, srtidx] = sort(eigenValues, 'descend');
     eigenValues = eigenValues(srtidx);

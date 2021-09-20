@@ -20,8 +20,8 @@ function [pc, eigenValues] = mypca(data)
     
     %Step three:
     % Obtain eigenvalues from A^T A.
-
-    [eigenVectorsTmp, eigenValues] = eig((1/(numObs - 1)) * A.' * A);
+    A = A ./ sqrt(numObs - 1);
+    [eigenVectorsTmp, eigenValues] = eig(A.' * A);
 
     
     eigenValues = diag(eigenValues);

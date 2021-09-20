@@ -49,14 +49,14 @@ accuracy = zeros(1,numel(KList));
 [labelsid, mapid] = grp2idx(trainingFilenameList);
 for K = KList
     % Step 1. Write code that projects the training data onto the first K principal components
-    trainingVectors = A' * pc(:, 1:K);
+    trainingVectors = pc(:, 1:K)' * A;
     
     % Step 2. Write code that subtracts the mean training face from the test data and projects the
     % resulting matrix onto the first K prinicipal components
-    testingVectors =  T' * pc(:, 1:K);
+    testingVectors =  pc(:, 1:K)' * T;
     
     % Compute accuracy
-    accuracy(idx) = classify(testingVectors',trainingVectors',trainingFilenameList,testingFilenameList);
+    accuracy(idx) = classify(testingVectors,trainingVectors,trainingFilenameList,testingFilenameList);
             
     idx = idx + 1;
 end
