@@ -1,4 +1,4 @@
-function [eigenValues, pc] = mypca(data)
+function [pc, eigenValues] = mypca(data)
 %MYPCA Performs Principal Component Analysis on an MxN input matrix, data
 %   Performs Principal Component Analysis on an MxN input matrix where
 %   each row represents one observation, and each column a variable
