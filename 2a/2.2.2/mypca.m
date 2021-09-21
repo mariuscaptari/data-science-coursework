@@ -1,3 +1,4 @@
+
 function [pc, eigenValues] = mypca(data)
 %MYPCA Performs Principal Component Analysis on an MxN input matrix, data
 %   Performs Principal Component Analysis on an MxN input matrix where
@@ -20,8 +21,8 @@ function [pc, eigenValues] = mypca(data)
     
     %Step three:
     % Obtain eigenvalues from A^T A.
-    A = A ./ (numObs - 1);
-    [eigenVectorsTmp, eigenValues] = eig(A.' * A);
+
+    [eigenVectorsTmp, eigenValues] = eig((1/(numObs - 1)) * A.' * A);
 
     
     eigenValues = diag(eigenValues);
@@ -41,4 +42,3 @@ function [pc, eigenValues] = mypca(data)
     pc = normc(pc);
 
 end
-
