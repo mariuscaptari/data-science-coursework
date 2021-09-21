@@ -7,8 +7,7 @@ function [pc, eigenValues] = mypca(A)
     
     %Step one:
     % Obtain eigenvalues from A^T A.
-
-    A = A ./ sqrt(numObs - 1);
+    A = A ./ (numObs - 1);
     [eigenVectorsTmp, eigenValues] = eig(A.' * A);
 
     eigenValues = diag(eigenValues);
