@@ -1,10 +1,11 @@
 import argparse
+from typing import Tuple
 import pandas as pd
 import numpy as np
 from sklearn.decomposition import PCA
 
 
-def transform_data_pca(data: pd.DataFrame, var_explained: float) -> (pd.DataFrame, int):
+def transform_data_pca(data: pd.DataFrame, var_explained: float) -> Tuple[pd.DataFrame, int]:
     pca = PCA(n_components=data.shape[1])
     pca.fit(data)
 
@@ -37,5 +38,4 @@ if __name__ == "__main__":
     print(f"Num PCs kept: {num_pcs}")
 
     transformed_data.to_csv(OUTPUT_FILE)
-
-
+    
