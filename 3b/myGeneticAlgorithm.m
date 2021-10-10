@@ -3,7 +3,7 @@
 % Author: George Azzopardi
 % Date:   October 2019
 
-function bestchromosome = myGeneticAlgorithm(features,labels,plot)
+function bestchromosome = myGeneticAlgorithm(features,labels,doPlot)
 % features = A matrix of independent variables
 % labels = A vector that contains the labels for each rows in matrix features
 
@@ -14,7 +14,7 @@ nparentsratio = 0.2; % portion of elite list (elite ratio)
 mutateprob    = 0.1; % probability to mutate a bit in a chromosome
 
 % Create figure that shows the progress of the genetic algorithm
-if plot==1
+if doPlot==1
     figure;hold on;
     title('Feature Selection with Genetic Algorithm');
     colorlist = jet(nepochs);
@@ -43,7 +43,7 @@ for epoch = 1:nepochs
     end    
     
     % Plot the scores to visualize the progress
-    if (plot==1)
+    if (doPlot==1)
         plot(sort(score,'descend'),'color',colorlist(epoch,:));
         xlabel('Chromosome');
         ylabel('Fitness Score');
