@@ -87,7 +87,7 @@ function offspring = getOffSpring(parent1,parent2,mutateprob)
 % TO FILL IN
 
 % Step 1. Write code that generates one offspring from the given two parents
-k = randi([2 size(parent1, 1)-1], 1); % Split point
+k = randi([2 numel(parent1)-1], 1); % Split point
 offspring = zeros(size(parent1));
 offspring(1:k) = parent1(1:k);
 offspring(k:end) = parent2(k:end);
@@ -115,8 +115,7 @@ meanacc = mean(acc);
 % TO FILL IN: WRITE CODE TO CALCULATE THE SCORE FOR THE GIVEN CHROMOSOME
 % BASED ON THE TRAINING ACCURACY MEANACC AND THE NUMBER OF ZEROS IN THE
 % CHROMOSOME
-index_zero = chromosome == 0;
-num_zeros = sum(index_zero(:));
+num_zeros = numel(chromosome) - sum(chromosome);
 score = (10^4 * meanacc) + (0.4 + num_zeros);
 
 function pop = generateInitialPopulation(n,ndim)
