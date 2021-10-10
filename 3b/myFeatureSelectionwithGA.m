@@ -2,6 +2,8 @@
 % feature selection
 % Course: Introduction to Data Science
 % Author: George Azzopardi - October 2019
+% plot parameter=1 to make the plots, else it won't create the plots
+
 
 function [bestchromosome, acc] = myFeatureSelectionwithGA(plot)
 
