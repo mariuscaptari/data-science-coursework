@@ -2,10 +2,8 @@
 % feature selection
 % Course: Introduction to Data Science
 % Author: George Azzopardi - October 2019
-% plot parameter=1 to make the plots, else it won't create the plots
-
-
-function [bestchromosome, acc] = myFeatureSelectionwithGA(plot)
+% doPlot parameter=1 to make the plots, else it won't create the plots
+function [bestchromosome, acc] = myFeatureSelectionwithGA(doPlot)
 
 % load data
 load wine.data;
@@ -20,7 +18,7 @@ testData = features(c.test,:);
 testLabel = labels(c.test);
 
 % Retrieve the best feature set using GA on the training data
-bestchromosome = myGeneticAlgorithm(trainingData,trainingLabel,plot);
+bestchromosome = myGeneticAlgorithm(trainingData,trainingLabel,doPlot);
 
 knn = fitcknn(trainingData(:,bestchromosome),trainingLabel);
 c1 = predict(knn,testData(:,bestchromosome));
