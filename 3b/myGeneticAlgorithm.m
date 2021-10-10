@@ -3,7 +3,7 @@
 % Author: George Azzopardi
 % Date:   October 2019
 
-function bestchromosome = myGeneticAlgorithm(features,labels)
+function bestchromosome = myGeneticAlgorithm(features,labels,plot)
 % features = A matrix of independent variables
 % labels = A vector that contains the labels for each rows in matrix features
 
@@ -14,10 +14,11 @@ nparentsratio = 0.2; % portion of elite list (elite ratio)
 mutateprob    = 0.1; % probability to mutate a bit in a chromosome
 
 % Create figure that shows the progress of the genetic algorithm
-figure;hold on;
-title('Feature Selection with Genetic Algorithm');
-colorlist = jet(nepochs);
-
+if plot==1
+    figure;hold on;
+    title('Feature Selection with Genetic Algorithm');
+    colorlist = jet(nepochs);
+end
 % Convert labels, which can be in string format, to numeric.
 [lbls,h] = grp2idx(labels);
 
@@ -42,12 +43,14 @@ for epoch = 1:nepochs
     end    
     
     % Plot the scores to visualize the progress
-    plot(sort(score,'descend'),'color',colorlist(epoch,:));
-    xlabel('Chromosome');
-    ylabel('Fitness Score');
-    legendList{epoch} = sprintf('Epoch %d',epoch);
-    legend(legendList);
-    drawnow;
+    if (plot==1)
+        plot(sort(score,'descend'),'color',colorlist(epoch,:));
+        xlabel('Chromosome');
+        ylabel('Fitness Score');
+        legendList{epoch} = sprintf('Epoch %d',epoch);
+        legend(legendList);
+        drawnow;
+    end
 end
 
 % Return the chromosome with the maximum fitness score
