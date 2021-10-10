@@ -1,4 +1,4 @@
-%This script makes 25 independent experiments using the
+%This script makes 15 independent experiments using the
 %myFeatureSelectionwithGA function and plots the accuracy of the two
 %methods (GA, all features)
 clc;
