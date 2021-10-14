@@ -89,7 +89,10 @@ class SemanticSpace:
 
         # Now create a query vector
         for t in q:
-            pass
+            item = self.I.search_for_term(t)
+
+            if item[0] is not None:
+                ret_q[item[1]] += 1
 
         ##
         # If our semantic space was generated from an initial weighted A matrix
