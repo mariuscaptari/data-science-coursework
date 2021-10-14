@@ -87,7 +87,7 @@ class InvertedIndex:
             if trm is None:
                 # New term
                 ll = LinkedList()
-                ll.insert_at_end((doc_id, 1))
+                ll.insert_at_end([doc_id, 1])
                 self.terms.append((t, ll))
             else:
                 ll = trm[1]
