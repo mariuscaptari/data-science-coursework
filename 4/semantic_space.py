@@ -133,13 +133,15 @@ class SemanticSpace:
         #
         # Can you optimise this further using the S_inv array in the constructor?
 
-        # Multiply q by T and scale by S^{-1}
-        for i in range(rank):
-            pass
-            for j in range(no_terms):
-                pass
+        # Multiply q by T
+        qt_arr = np.atleast_2d(q)
+        tmp = np.dot(qt_arr, self.T)
 
-        return 0.0
+        # and scale by S^{-1}
+        for i in range(rank):
+            fol_q[i] = tmp[0][i] * self.S_inv[i]
+
+        return fol_q
 
     ##
     # Calculates the cosine between a query vector and a document
