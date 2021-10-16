@@ -329,3 +329,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+2a/2.2.3/data
+*.asv
+
+.DS_Store
+
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
