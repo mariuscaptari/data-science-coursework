@@ -191,12 +191,21 @@ class SemanticSpace:
     # 09/10/2019 - Created (CJL).
     ###
     def cosine_with_term(self, t1, t2):
+        t1_matx = self.T[t1][:self.max_dimension]
+        t2_matx = self.T.shape[t2][:self.max_dimension]
+
+        #Scale 
+        np.matmul(t1_matx, self.S)
+        np.matmul(t2_matx, self.S)
+
         # m_t1 and m_t2 are the magnitudes of the term vectors
-        m_t1 = 0.0
-        m_t2 = 0.0
+        m_t1 = np.linalg.norm(t1_matx)
+        m_t2 = np.linalg.norm(t2_matx)
 
         # This would be the dot product of t1*S [dot] t2*S
-        calc = 0.0
+        calc = np.dot(t1_matx, self, t2_matx.T)
+
+        cos = calc / (m_t1 * m_t2)
 
         # Can you optimise this further using the S_sq array generated
         # in the constructor?
@@ -205,4 +214,4 @@ class SemanticSpace:
         for i in range(self.max_dimension):
             pass
 
-        return 0.0
+        return cos
