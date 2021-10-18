@@ -162,21 +162,17 @@ class SemanticSpace:
     # 09/10/2019 - Created (CJL).
     ###
     def cosine_with_doc(self, q, doc):
-        # m_q and m_d are the magnitudes of the query and document vectors
-        m_q = 0.0
-        m_d = 0.0
-
-        # This would be the dot product of q*S [dot] Dt[*]*S[doc]
-        calc = 0.0
-
         # Can you optimise this further using the S_sq array generated
         # in the constructor?
+        doc = self.Dt[:, doc][:self.max_dimension]
+        q = np.array(q)[:self.max_dimension]
 
         # TODO:  Complete this method
         for i in range(self.max_dimension):
-            pass
+            q *= self.S[i]
+            doc *= self.S[i]
 
-        return 0.0
+        return np.dot(q, doc) / (np.linalg.norm(q) * np.linalg.norm(doc))
 
     ##
     # Calculates the cosine between two terms in our semantic space.
