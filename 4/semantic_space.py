@@ -208,7 +208,7 @@ class SemanticSpace:
         m_t2 = np.linalg.norm(t2_matx)
 
         # This would be the dot product of t1*S [dot] t2*S
-        calc = np.dot(t1_matx, self, t2_matx.T)
+        calc = np.dot(t1_matx, t2_matx)
 
         cos = calc / (m_t1 * m_t2)
 
