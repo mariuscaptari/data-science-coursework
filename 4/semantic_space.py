@@ -190,15 +190,6 @@ class SemanticSpace:
         t1_matx = self.T[t1][:self.max_dimension]
         t2_matx = self.T[t2][:self.max_dimension]
 
-        #Scale 
-        #np.matmul(t1_matx, self.S)
-        #np.matmul(t2_matx, self.S)
-
-        
-        # Can you optimise this further using the S_sq array generated
-        # in the constructor?
-
-        # TODO:  Complete this method
         for i in range(self.max_dimension):
             t1_matx *= self.S[i]
             t2_matx *= self.S[i]
@@ -210,6 +201,7 @@ class SemanticSpace:
         # This would be the dot product of t1*S [dot] t2*S
         calc = np.dot(t1_matx, t2_matx)
 
+        # Calculate the cosine similarity between terms
         cos = calc / (m_t1 * m_t2)
 
         return cos
